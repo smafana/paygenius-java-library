@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableFeignClients(basePackages = {"za.co.momentum.investment.feign"})
+@EnableFeignClients(basePackages = {"za.co.developer.paymentservice.feign"})
 public class FeignClientConfig {
     @Bean
     Logger.Level feignLoggerLevel() {

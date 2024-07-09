@@ -1,10 +1,12 @@
 server:
-    port: 8085
-    servlet:
-        context-path: /merchant
+  port: 8085
+  servlet:
+    context-path: /merchant
 error:
-    include-message: always
+  include-message: always
 
 paygenius:
-    endpoint: https://developer.paygenius.co.za/pg/api/v2/payment/create
-    feign-url: https://developer.paygenius.co.za/pg/api/v2/payment
+  url:
+    baseUrl: https://developer.paygenius.co.za/pg/api
+    createPayment: /create
+    createEfyPayment: /create/eft
