@@ -1,9 +1,11 @@
-package za.co.paygenius.developer.paymentservice.dto;
+package za.co.paygenius.developer.paymentservice.dto.CardPaymentsZAR;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import za.co.paygenius.developer.paymentservice.dto.CreditCard;
+import za.co.paygenius.developer.paymentservice.dto.Transaction;
 
 @Getter
 @Setter

@@ -1,4 +1,4 @@
-package za.co.paygenius.developer.paymentservice.dto;
+package za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,12 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreatePaymentResponse {
-
+public class Response {
     private boolean success;
-    private String transactionDate;
     private String reference;
     private int code;
+    private String redirectUrl;
     private String message;
-
 }

@@ -1,4 +1,4 @@
-package za.co.paygenius.developer.paymentservice.dto;
+package za.co.paygenius.developer.paymentservice.dto.instantMethodsEFT;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PartialRefundRequest {
-    private Transaction transaction;
+public class TransactionResponse {
+    private boolean success;
+    private String transactionDate;
 }
