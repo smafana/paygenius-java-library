@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther.CreatePaymentOtherRequest;
 import za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther.CreatePaymentOtherResponse;
 import za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther.ExecutePaymentOtherRequest;
+import za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther.RefundPaymentOtherRequest;
 import za.co.paygenius.developer.paymentservice.dto.CardPaymentsZAR.PartialRefundRequest;
 import za.co.paygenius.developer.paymentservice.dto.TransactionResponse;
 import za.co.paygenius.developer.paymentservice.feign.CardPaymentOtherFeignClient;
@@ -86,6 +87,34 @@ public class CreatePaymentOtherService {
         updatedHeaders.remove("content-length");
         log.info("Calling: "+url);
         TransactionResponse transactionResponse = cardPaymentOtherFeignClient.executePayment(reference, updatedHeaders);
+        return transactionResponse;
+    }
+
+    public TransactionResponse partialRefundPaymentOther(final RefundPaymentOtherRequest request, Map<String,String> headers, String reference) throws Exception{
+        String url = baseUrl+"/v3/payment/"+reference+"/refund";
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonPayload = objectMapper.writeValueAsString(request);
+        HttpHeaders updatedHeaders = new HttpHeaders();
+        updatedHeaders.setAll(headers);
+        updatedHeaders.set("X-Signature", getSignature(jsonPayload,url, headers));
+        updatedHeaders.set("X-Token", headers.get("x-token"));
+        updatedHeaders.remove("x-secret");
+        updatedHeaders.remove("content-length");
+        log.info("calling :"+url);
+        TransactionResponse transactionResponse = cardPaymentOtherFeignClient.partialRefundPayment(request, updatedHeaders, reference);
+        return transactionResponse;
+    }
+
+    public TransactionResponse fullRefundPaymentOther(Map<String,String> headers, String reference) throws Exception{
+        String url = baseUrl+"/v3/payment/"+reference+"/refund";
+        HttpHeaders updatedHeaders = new HttpHeaders();
+        updatedHeaders.setAll(headers);
+        updatedHeaders.set("X-Signature", getSignature(null,url, headers));
+        updatedHeaders.set("X-Token", headers.get("x-token"));
+        updatedHeaders.remove("x-secret");
+        updatedHeaders.remove("content-length");
+        log.info("Calling: "+url);
+        TransactionResponse transactionResponse = cardPaymentOtherFeignClient.fullRefundPayment(reference, updatedHeaders);
         return transactionResponse;
     }
 }

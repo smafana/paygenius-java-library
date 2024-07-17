@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther.CreatePaymentOtherRequest;
 import za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther.CreatePaymentOtherResponse;
 import za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther.ExecutePaymentOtherRequest;
+import za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther.RefundPaymentOtherRequest;
 import za.co.paygenius.developer.paymentservice.dto.TransactionResponse;
 import za.co.paygenius.developer.paymentservice.service.CreatePaymentOtherService;
 
@@ -32,5 +33,15 @@ public class CardPaymentOtherController {
     @GetMapping(path = "/execute-payment/{reference}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TransactionResponse> executePayment( @RequestHeader Map<String,String> headers, @PathVariable("reference") String reference) throws Exception{
         return ResponseEntity.ok(createPaymentOtherService.executePaymentOther( headers, reference));
+    }
+
+    @PostMapping(path = "/partial-refund-payment/{reference}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TransactionResponse> partialRefundPayment(@Valid @RequestBody RefundPaymentOtherRequest request, @RequestHeader Map<String,String> headers, @PathVariable("reference") String reference) throws Exception{
+        return ResponseEntity.ok(createPaymentOtherService.partialRefundPaymentOther(request, headers, reference));
+    }
+
+    @GetMapping(path = "/full-refund-payment/{reference}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TransactionResponse> fullRefundPayment( @RequestHeader Map<String,String> headers, @PathVariable("reference") String reference) throws Exception{
+        return ResponseEntity.ok(createPaymentOtherService.fullRefundPaymentOther( headers, reference));
     }
 }
