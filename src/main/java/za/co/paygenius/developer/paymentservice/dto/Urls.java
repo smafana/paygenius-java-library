@@ -13,4 +13,5 @@ public class Urls {
     private String success;
     private String cancel;
     private String error;
+    private String notify;
 }

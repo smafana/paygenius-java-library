@@ -11,10 +11,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther.CreatePaymentOtherRequest;
 import za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther.CreatePaymentOtherResponse;
-import za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther.ExecutePaymentOtherRequest;
-import za.co.paygenius.developer.paymentservice.dto.CardPaymentsZAR.PartialRefundRequest;
+import za.co.paygenius.developer.paymentservice.dto.PaymentPageMethods.CreateRedirectAffiliateMerchantRequest;
+import za.co.paygenius.developer.paymentservice.dto.PaymentPageMethods.CreateRedirectRequest;
+import za.co.paygenius.developer.paymentservice.dto.PaymentPageMethods.CreateRedirectResponse;
+import za.co.paygenius.developer.paymentservice.dto.PaymentPageMethods.LookupPaymentResponse;
 import za.co.paygenius.developer.paymentservice.dto.TransactionResponse;
 import za.co.paygenius.developer.paymentservice.feign.CardPaymentOtherFeignClient;
+import za.co.paygenius.developer.paymentservice.feign.PaymentPageMethodsFeignClient;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -23,14 +26,14 @@ import java.util.Map;
 
 @Service
 @Slf4j
-public class CreatePaymentOtherService {
-    private static final Logger log = LoggerFactory.getLogger(CreatePaymentOtherService.class);
+public class PaymentPageMethodsService {
+    private static final Logger log = LoggerFactory.getLogger(PaymentPageMethodsService.class);
 
     @Value("${paygenius.url.baseUrl}")
     private String baseUrl;
 
     @Autowired
-    CardPaymentOtherFeignClient cardPaymentOtherFeignClient;
+    PaymentPageMethodsFeignClient paymentPageMethodsFeignClient;
 
     public String getSignature(final String payload, String url, Map<String, String> headers) throws Exception {
         String secret = headers.get("x-secret");
@@ -46,8 +49,8 @@ public class CreatePaymentOtherService {
         }
     }
 
-    public CreatePaymentOtherResponse createPaymentWithAuthorize(final CreatePaymentOtherRequest request, Map<String, String> headers) throws Exception{
-        String url = baseUrl+"/v3/payment/create";
+    public CreateRedirectResponse createRedirect(final CreateRedirectRequest request, Map<String, String> headers) throws Exception{
+        String url = baseUrl+"/v2/redirect/create";
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonPayload = objectMapper.writeValueAsString(request);
         HttpHeaders updatedHeaders = new HttpHeaders();
@@ -57,12 +60,12 @@ public class CreatePaymentOtherService {
         updatedHeaders.remove("x-secret");
         updatedHeaders.remove("content-length");
         log.info("calling :"+url);
-        CreatePaymentOtherResponse response = cardPaymentOtherFeignClient.createPaymentWithAuthorize(request, updatedHeaders);
+        CreateRedirectResponse response = paymentPageMethodsFeignClient.createRedirect(request, updatedHeaders);
         return response;
     }
 
-    public TransactionResponse partialExecutePaymentOther(final ExecutePaymentOtherRequest request, Map<String,String> headers, String reference) throws Exception{
-        String url = baseUrl+"/v3/payment/"+reference+"/execute";
+    public CreateRedirectResponse createRedirectAffiliateMerchant(final CreateRedirectAffiliateMerchantRequest request, Map<String, String> headers) throws Exception{
+        String url = baseUrl+"/v2/redirect/create";
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonPayload = objectMapper.writeValueAsString(request);
         HttpHeaders updatedHeaders = new HttpHeaders();
@@ -72,20 +75,20 @@ public class CreatePaymentOtherService {
         updatedHeaders.remove("x-secret");
         updatedHeaders.remove("content-length");
         log.info("calling :"+url);
-        TransactionResponse transactionResponse = cardPaymentOtherFeignClient.partialExecutePayment(request, updatedHeaders, reference);
-        return transactionResponse;
+        CreateRedirectResponse response = paymentPageMethodsFeignClient.createRedirectAffiliateMerchant(request, updatedHeaders);
+        return response;
     }
 
-    public TransactionResponse executePaymentOther(Map<String,String> headers, String reference) throws Exception{
-        String url = baseUrl+"/v3/payment/"+reference+"/execute";
+    public LookupPaymentResponse lookupPayment(Map<String,String> headers, String reference) throws Exception{
+        String url = baseUrl+"/v2/redirect/"+reference;
         HttpHeaders updatedHeaders = new HttpHeaders();
         updatedHeaders.setAll(headers);
         updatedHeaders.set("X-Signature", getSignature(null,url, headers));
         updatedHeaders.set("X-Token", headers.get("x-token"));
         updatedHeaders.remove("x-secret");
         updatedHeaders.remove("content-length");
-        log.info("Calling: "+url);
-        TransactionResponse transactionResponse = cardPaymentOtherFeignClient.executePayment(reference, updatedHeaders);
-        return transactionResponse;
+        log.info("calling: "+url);
+        LookupPaymentResponse response = paymentPageMethodsFeignClient.LookupPayment(reference, updatedHeaders);
+        return response;
     }
 }

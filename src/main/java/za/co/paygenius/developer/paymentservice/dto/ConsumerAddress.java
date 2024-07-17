@@ -1,4 +1,4 @@
-package za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther;
+package za.co.paygenius.developer.paymentservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

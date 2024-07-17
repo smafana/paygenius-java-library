@@ -1,4 +1,4 @@
-package za.co.paygenius.developer.paymentservice.dto.CardPaymentsOther;
+package za.co.paygenius.developer.paymentservice.dto.PaymentPageMethods;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,20 +6,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import za.co.paygenius.developer.paymentservice.dto.Consumer;
 import za.co.paygenius.developer.paymentservice.dto.Transaction;
+import za.co.paygenius.developer.paymentservice.dto.Urls;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreatePaymentOtherRequest {
+public class CreateRedirectRequest {
     private Transaction transaction;
-    private Urls urls;
     private Consumer consumer;
+    private Urls urls;
+    private boolean auth;
+    private String pageUrlKey;
     private boolean threeDSecure;
-    private boolean authorize;
-    private boolean allowMultiCurrencyPurchase;
-    private String transactionDate;
     private String description;
     private String destinationCountry;
+    private String transactionDate;
     private int pax;
+    private int affiliateMerchantId;
+    private boolean recurring;
 }

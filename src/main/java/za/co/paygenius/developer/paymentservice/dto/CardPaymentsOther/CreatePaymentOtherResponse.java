@@ -9,9 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Consumer {
-    private String name;
-    private String surname;
-    private String email;
-    private ConsumerAddress consumerAddress;
+public class CreatePaymentOtherResponse {
+    private boolean success;
+    private String reference;
+    private int code;
+    private String redirectUrl;
+    private String message;
 }

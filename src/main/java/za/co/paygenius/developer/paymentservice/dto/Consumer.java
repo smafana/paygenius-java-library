@@ -13,4 +13,5 @@ public class Consumer {
     private String name;
     private String surname;
     private String email;
+    private ConsumerAddress consumerAddress;
 }
