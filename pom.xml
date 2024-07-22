@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>za.co.paygenius</groupId>
-	<artifactId>payment-service</artifactId>
+	<artifactId>paygenius-java-library</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>PaymentService</name>
+	<name>PayGenius Java Library</name>
 	<description>Project to enable merchants to intergrate with paygenius</description>
 	<url/>
 	<licenses>
