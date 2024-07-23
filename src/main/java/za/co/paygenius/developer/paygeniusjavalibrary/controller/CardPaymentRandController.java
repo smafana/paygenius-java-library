@@ -21,7 +21,7 @@ public class CardPaymentRandController {
 
     @PostMapping(path = "/create-payment", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreatePaymentResponse> createPayment(@Valid @RequestBody CreatePaymentRequest request, @RequestHeader Map<String, String> headers) throws Exception {
-        return ResponseEntity.ok(cardPaymentRandService.createPayment(request, headers));
+        return ResponseEntity.ok(cardPaymentRandService.createPayment(request));
     }
 
     @PostMapping(path = "/partial-refund/{reference}", produces = MediaType.APPLICATION_JSON_VALUE)

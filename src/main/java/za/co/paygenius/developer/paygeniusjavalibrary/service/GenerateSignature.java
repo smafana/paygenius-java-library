@@ -25,12 +25,30 @@ public class GenerateSignature {
     @Value("${paygenius.url.baseUrl}")
     private String baseUrl;
 
+    @Value("${paygenius.secret}")
+    private String secret;
+
 
     @Autowired
     CardPaymentRandFeignClient cardPaymentRandFeignClient;
 
     public static String getSignature(final String payload, String url, Map<String, String> headers) throws Exception {
         String secret = headers.get("x-secret");
+        Mac hmac = Mac.getInstance("HmacSHA256");
+        SecretKeySpec secretKeySpec = new SecretKeySpec(secret.getBytes(Charset.defaultCharset()), "HmacSHA256");
+        hmac.init(secretKeySpec);
+
+        if(payload!=null) {
+            return new String(Hex.encodeHex(hmac.doFinal(String.format("%s\n%s", url, payload).trim().getBytes(Charset.defaultCharset()))));
+        }
+        else {
+            return new String(Hex.encodeHex(hmac.doFinal(url.trim().getBytes(Charset.defaultCharset()))));
+        }
+    }
+
+
+    public String getSignature(final String payload, String url) throws Exception {
+
         Mac hmac = Mac.getInstance("HmacSHA256");
         SecretKeySpec secretKeySpec = new SecretKeySpec(secret.getBytes(Charset.defaultCharset()), "HmacSHA256");
         hmac.init(secretKeySpec);
