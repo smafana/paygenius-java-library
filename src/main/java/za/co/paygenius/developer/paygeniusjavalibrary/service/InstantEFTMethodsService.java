@@ -19,7 +19,7 @@ import static za.co.paygenius.developer.paygeniusjavalibrary.service.GenerateSig
 @Service
 @Slf4j
 public class InstantEFTMethodsService {
-    private static final Logger log = LoggerFactory.getLogger(InstantEFTMethodsService.class);
+    /*private static final Logger log = LoggerFactory.getLogger(InstantEFTMethodsService.class);
     @Value("${paygenius.url.baseUrl}")
     private String baseUrl;
 
@@ -40,5 +40,5 @@ public class InstantEFTMethodsService {
         log.info("calling :"+url);
         CreateEFTPaymentResponse createEFTPaymentResponse = instantEFTMethodsFeignClient.createPaymentEFT(createEFTPaymentRequest, updatedHeaders);
         return createEFTPaymentResponse;
-    }
+    }*/
 }

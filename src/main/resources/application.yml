@@ -10,3 +10,4 @@ paygenius:
     baseUrl: https://developer.paygenius.co.za/pg/api
     createPayment: /create
     createEfyPayment: /create/eft
+

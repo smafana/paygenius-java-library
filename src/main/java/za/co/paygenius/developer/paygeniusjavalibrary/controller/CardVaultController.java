@@ -15,13 +15,13 @@ import za.co.paygenius.developer.paygeniusjavalibrary.dto.CardVaultMethods.reque
 import za.co.paygenius.developer.paygeniusjavalibrary.dto.CardVaultMethods.responses.LookupCardResponse;
 import za.co.paygenius.developer.paygeniusjavalibrary.dto.CardVaultMethods.responses.RegisterCardResponse;
 import za.co.paygenius.developer.paygeniusjavalibrary.dto.CardVaultMethods.responses.UnregisterCardResponse;
-import za.co.paygenius.developer.paygeniusjavalibrary.service.CardVaultMethodsService;
+import za.co.paygenius.developer.paygeniusjavalibrary.service.PayGeniusService;
 
 import java.util.Map;
 @RestController
 public class CardVaultController {
-    @Autowired
-    private CardVaultMethodsService cardVaultMethodsService;
+   /* @Autowired
+    private PayGeniusService cardVaultMethodsService;
 
     @PostMapping(path = "/card/register", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegisterCardResponse> registerCard(@Valid @RequestBody RegisterCardRequest request, @RequestHeader Map<String,String> headers) throws Exception{
@@ -46,5 +46,5 @@ public class CardVaultController {
     @PostMapping(path = "/card/unregister", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UnregisterCardResponse> unregisterCard(@Valid@RequestBody LookupCardTokenRequest request, @RequestHeader Map<String,String> headers) throws Exception{
         return ResponseEntity.ok(cardVaultMethodsService.unregisterCard(request, headers));
-    }
+    }*/
 }

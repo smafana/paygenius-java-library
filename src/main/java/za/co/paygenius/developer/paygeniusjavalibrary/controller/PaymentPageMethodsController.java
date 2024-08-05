@@ -15,7 +15,7 @@ import java.util.Map;
 
 @RestController
 public class PaymentPageMethodsController {
-    @Autowired
+    /*@Autowired
     private PaymentPageMethodsService paymentPageMethodsService;
 
     @PostMapping(path = "/create-redirect", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -31,5 +31,5 @@ public class PaymentPageMethodsController {
     @GetMapping(path = "/redirect/{reference}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LookupPaymentResponse> lookupPayment(@RequestHeader Map<String,String> headers, @PathVariable("reference") String reference) throws Exception{
         return ResponseEntity.ok(paymentPageMethodsService.lookupPayment(headers,reference));
-    }
+    }*/
 }

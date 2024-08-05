@@ -11,8 +11,7 @@ import za.co.paygenius.developer.paygeniusjavalibrary.dto.request.AbstractReques
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
+//@AllArgsConstructor
 public class CreatePaymentRequest extends AbstractRequest {
 
     private CreditCard creditCard;
@@ -25,4 +24,5 @@ public class CreatePaymentRequest extends AbstractRequest {
     public CreatePaymentRequest() {
         super(Request.HttpMethod.POST, "/v2/payment/create");
     }
+
 }

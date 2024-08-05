@@ -8,14 +8,26 @@ import lombok.Setter;
 import za.co.paygenius.developer.paygeniusjavalibrary.dto.Transaction;
 import za.co.paygenius.developer.paygeniusjavalibrary.dto.request.AbstractRequest;
 
+//@AllArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class ExecutePaymentRequest extends AbstractRequest {
-    public Transaction transaction;
+    private Transaction transaction;
 
-    public ExecutePaymentRequest(String reference) {
+    /*public ExecutePaymentRequest(String reference) {
         super(Request.HttpMethod.POST, "/v2/payment/"+reference+"/execute");
+    }*/
+
+    public Transaction getTransaction() {
+        return transaction;
     }
+
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }
+
+    public ExecutePaymentRequest() {
+        super(Request.HttpMethod.POST, "/v2/payment/create");
+    }
+
 }

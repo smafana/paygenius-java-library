@@ -16,4 +16,12 @@ public class Transaction {
     private String reference;
     private String currency;
     private BigDecimal amount;
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
 }

@@ -19,7 +19,7 @@ import static za.co.paygenius.developer.paygeniusjavalibrary.service.GenerateSig
 @Service
 @Slf4j
 public class PaymentPageMethodsService {
-    private static final Logger log = LoggerFactory.getLogger(PaymentPageMethodsService.class);
+    /*private static final Logger log = LoggerFactory.getLogger(PaymentPageMethodsService.class);
 
     @Value("${paygenius.url.baseUrl}")
     private String baseUrl;
@@ -69,5 +69,5 @@ public class PaymentPageMethodsService {
         log.info("calling: "+url);
         LookupPaymentResponse response = paymentPageMethodsFeignClient.LookupPayment(reference, updatedHeaders);
         return response;
-    }
+    }*/
 }

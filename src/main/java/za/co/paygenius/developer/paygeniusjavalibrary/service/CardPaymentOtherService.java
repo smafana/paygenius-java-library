@@ -21,7 +21,7 @@ import static za.co.paygenius.developer.paygeniusjavalibrary.service.GenerateSig
 @Service
 @Slf4j
 public class CardPaymentOtherService {
-    private static final Logger log = LoggerFactory.getLogger(CardPaymentOtherService.class);
+    /*private static final Logger log = LoggerFactory.getLogger(CardPaymentOtherService.class);
 
     @Value("${paygenius.url.baseUrl}")
     private String baseUrl;
@@ -129,5 +129,5 @@ public class CardPaymentOtherService {
         log.info("calling :"+url);
         EditPaymentResponse editResponse = cardPaymentOtherFeignClient.editPaymentAdvanced(request, updatedHeaders, reference);
         return editResponse;
-    }
+    }*/
 }

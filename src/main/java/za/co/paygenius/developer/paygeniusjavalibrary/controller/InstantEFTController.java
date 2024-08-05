@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 public class InstantEFTController {
-    @Autowired
+    /*@Autowired
     private GenerateSignature payGeniusService;
     @Autowired
     private InstantEFTMethodsService instantEFTMethodsService;
@@ -22,10 +22,6 @@ public class InstantEFTController {
     @PostMapping(path = "/create-eft-payment", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreateEFTPaymentResponse> createEFTPayment(@Valid @RequestBody CreateEFTPaymentRequest request, @RequestHeader Map<String,String> headers) throws Exception{
         return ResponseEntity.ok(instantEFTMethodsService.createPaymentEFT(request, headers));
-    }
-
-
-
-
+    }*/
 
 }
